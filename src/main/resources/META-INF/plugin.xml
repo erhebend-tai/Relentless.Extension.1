@@ -9,7 +9,18 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
+        <service serviceImplementation="com.github.erhebendtai.relentlessextension1.services.FileIngestionService"/>
+        <service serviceImplementation="com.github.erhebendtai.relentlessextension1.services.MistralAIService"/>
+        <service serviceImplementation="com.github.erhebendtai.relentlessextension1.services.CloudflareAIService"/>
+        <service serviceImplementation="com.github.erhebendtai.relentlessextension1.services.MongoDBService"/>
         <toolWindow factoryClass="com.github.erhebendtai.relentlessextension1.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <postStartupActivity implementation="com.github.erhebendtai.relentlessextension1.startup.BotRegistrationActivity" />
         <postStartupActivity implementation="com.github.erhebendtai.relentlessextension1.startup.MyProjectActivity" />
     </extensions>
+
+    <actions>
+        <action id="com.github.erhebendtai.relentlessextension1.actions.IngestFilesAction" class="com.github.erhebendtai.relentlessextension1.actions.IngestFilesAction"
+                text="Ingest Files for Bot Processing" description="Scans all project files and processes them with registered bots."
+                add-to-group="ToolsMenu" anchor="last"/>
+    </actions>
 </idea-plugin>
